@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produktdetails - Soundplate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            /* background: rgba(255, 255, 255, 0.95); */
+            background: #B4A284;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1D1D1B;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #F6EAD4;
+        }
+
+        .nav-links a.active {
+            color: #F6EAD4;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, #B4A284 0%, #A2A595 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            /* color: #2d3748; */
+            color: #1D1D1B;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            /* color: #718096; */
+            color: #1D1D1B;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Product Overview */
+        .product-overview {
+            padding: 4rem 0;
+            background: #A2A595;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, #B4A284 0%, #A2A595 100%);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* color: white; */
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .overview-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1D1D1B;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-content p {
+            font-size: 1.1rem;
+            color: #1D1D1B;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .key-benefits {
+            list-style: none;
+        }
+
+        .key-benefits li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .key-benefits li::before {
+            content: '✓';
+            background: #B4A284;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Technical Specs */
+        .tech-specs {
+            padding: 4rem 0;
+            background: #A2A595;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1D1D1B;
+        }
+        
+        .section-title_alt {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #B4A284;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-card {
+            background: #1D1D1B;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #B4A284;
+        }
+
+        .spec-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #B4A284;
+            margin-bottom: 1rem;
+        }
+
+        .spec-list {
+            list-style: none;
+        }
+
+        .spec-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .spec-value {
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* Use Cases */
+        /* .use-cases {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .use-case {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #B4A284 0%, #A2A595 100%);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .use-case p {
+            color: #4a5568;
+            line-height: 1.6;
+        } */
+
+        /* Pricing */
+        .pricing {
+            padding: 4rem 0;
+            background: #1a202c;
+            color: #B4A284;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured {
+            border-color: #B4A284;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: #B4A284;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .btn-pricing {
+            background: #B4A284;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .btn-pricing:hover {
+            color: #B4A284;
+            background: #1D1D1B;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            opacity: 0.7;
+        }
+
+        /* .social-links {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #0077B5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .linkedin-link:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4);
+        }
+
+        .linkedin-logo {
+            width: 20px;
+            height: 20px;
+        } */
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .specs-grid,
+            .use-cases-grid,
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Soundplate</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#top" class="active">Produkt</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href=".\team.html">Team</a></li>
+                <li><a href="#imprint">Impressum</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <h1>Produktdetails</h1>
+        <p>Entdecken Sie alle Funktionen und technischen Spezifikationen unseres innovativen Produkts</p>
+    </section>
+
+    <!-- Product Overview -->
+    <section class="product-overview">
+        <div class="container">
+            <div class="overview-grid">
+                <div class="product-image">
+                    <img
+                        src=".\bedroom1_landscapes.png"
+                        alt="prduct picture"
+                        width="500"
+                        \>
+                </div>
+                <div class="overview-content fade-in">
+                    <h2>Revolution in der Digitalisierung</h2>
+                    <p>Unser Produkt kombiniert modernste Technologie mit benutzerfreundlichem Design, um Ihnen eine beispiellose Erfahrung zu bieten. Entwickelt von Experten für Profis und Einsteiger gleichermaßen.</p>
+                    
+                    <ul class="key-benefits">
+                        <li>99.9% Zuverlässigkeit und Uptime</li>
+                        <li>10x schneller als herkömmliche Lösungen</li>
+                        <li>Enterprise-grade Sicherheit</li>
+                        <li>Intuitive Benutzeroberfläche</li>
+                        <li>24/7 Premium Support</li>
+                        <li>Nahtlose Integration in bestehende Systeme</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="tech-specs">
+        <div class="container">
+            <h2 class="section-title fade-in">Technische Spezifikationen</h2>
+            <div class="specs-grid">
+                <div class="spec-card fade-in">
+                    <h3>Spatial Correlation</h3>
+                    <ul class="spec-list">
+                        <img
+                            src=".\SpatialCorrelation.svg"
+                            alt="spatial correlation"
+                            width="350"
+                            />
+                        <!-- <li>
+                            <span class="spec-label">Verarbeitungsgeschwindigkeit</span>
+                            <span class="spec-value">< 50ms</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Durchsatz</span>
+                            <span class="spec-value">1M+ Requests/s</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Concurrent Users</span>
+                            <span class="spec-value">100,000+</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Uptime SLA</span>
+                            <span class="spec-value">99.99%</span>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="spec-card fade-in">
+                    <h3>Coverage With Distance</h3>
+                    <ul class="spec-list">
+                        <img
+                            src=".\CoverageWithDistance.svg"
+                            alt="coverage with distance"
+                            width="300"
+                            />
+                        <!-- <li>
+                            <span class="spec-label">Verschlüsselung</span>
+                            <span class="spec-value">AES-256</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Authentifizierung</span>
+                            <span class="spec-value">OAuth 2.0 / SAML</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Compliance</span>
+                            <span class="spec-value">GDPR, HIPAA, SOC2</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Backup</span>
+                            <span class="spec-value">3x täglich</span>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="spec-card fade-in">
+                    <h3>Sound Pressure Level over Distance</h3>
+                    <img
+                        src=".\SPLvsDistance.svg"
+                        alt="SPL vs distance"
+                        width="300"
+                        />
+                    <!-- <ul class="spec-list">
+                        <li>
+                            <span class="spec-label">API</span>
+                            <span class="spec-value">REST / GraphQL</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Webhooks</span>
+                            <span class="spec-value">Real-time</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">SDKs</span>
+                            <span class="spec-value">10+ Sprachen</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Plattformen</span>
+                            <span class="spec-value">Web, Mobile, Desktop</span>
+                        </li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <!-- <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title fade-in">Anwendungsbereiche</h2>
+            <div class="use-cases-grid">
+                <div class="use-case fade-in">
+                    <div class="use-case-icon">🏢</div>
+                    <h3>Unternehmen</h3>
+                    <p>Optimieren Sie Ihre Geschäftsprozesse und steigern Sie die Effizienz um bis zu 300%. Perfekt für Teams von 10 bis 10,000+ Mitarbeitern.</p>
+                </div>
+                
+                <div class="use-case fade-in">
+                    <div class="use-case-icon">🎓</div>
+                    <h3>Bildung</h3>
+                    <p>Revolutionieren Sie das Lernen mit interaktiven Tools und Analytics. Ideal für Schulen, Universitäten und Online-Lernplattformen.</p>
+                </div>
+                
+                <div class="use-case fade-in">
+                    <div class="use-case-icon">🏥</div>
+                    <h3>Gesundheitswesen</h3>
+                    <p>HIPAA-konforme Lösungen für Patientendatenmanagement und Workflow-Optimierung in medizinischen Einrichtungen.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title_alt fade-in">Preispläne</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card fade-in">
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-price">€29<span>/Monat</span></div>
+                    <ul class="plan-features">
+                        <li>Bis zu 1.000 Anfragen/Tag</li>
+                        <li>Standard Support</li>
+                        <li>Basis-Analytics</li>
+                        <li>2 Team-Mitglieder</li>
+                    </ul>
+                    <a href="#" class="btn-pricing">Jetzt starten</a>
+                </div>
+
+                <div class="pricing-card featured fade-in">
+                    <div class="plan-name">Professional</div>
+                    <div class="plan-price">€99<span>/Monat</span></div>
+                    <ul class="plan-features">
+                        <li>Bis zu 10.000 Anfragen/Tag</li>
+                        <li>Priority Support</li>
+                        <li>Erweiterte Analytics</li>
+                        <li>10 Team-Mitglieder</li>
+                        <li>API-Zugang</li>
+                        <li>Custom Branding</li>
+                    </ul>
+                    <a href="#" class="btn-pricing">Beliebteste Wahl</a>
+                </div>
+
+                <div class="pricing-card fade-in">
+                    <div class="plan-name">Enterprise</div>
+                    <div class="plan-price">Custom</div>
+                    <ul class="plan-features">
+                        <li>Unbegrenzte Anfragen</li>
+                        <li>24/7 Dedicated Support</li>
+                        <li>Custom Analytics</li>
+                        <li>Unbegrenzte Team-Mitglieder</li>
+                        <li>White-Label Lösung</li>
+                        <li>On-Premise Option</li>
+                    </ul>
+                    <a href="#" class="btn-pricing">Kontakt aufnehmen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="imprint">
+        <div class="footer-content">
+            <!-- <div class="social-links">
+                <a href="https://www.linkedin.com/in/ihr-linkedin-profil/" class="linkedin-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="linkedin-logo" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn Profil
+                </a>
+            </div> -->
+            <p>&copy; 2024 ProduktName. Alle Rechte vorbehalten.</p>
+            <p>Kontakt: info@produktname.de | +49 123 456 789</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
