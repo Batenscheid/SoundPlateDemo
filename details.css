@@ -1,0 +1,225 @@
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Product Overview */
+.product-overview {
+    padding: 4rem 0;
+    background: #A2A595;
+}
+
+.overview-grid {
+    max-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: auto; */
+    gap: 4rem;
+    align-items: center;
+}
+
+.product-image {
+    background: linear-gradient(135deg, #B4A284 0%, #A2A595 100%);
+    border-radius: 20px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* color: white; */
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .overview-grid {
+        max-width: 90%;
+        display: grid;
+        /* grid-template-columns: 1fr 1fr; */
+        grid-template-columns: auto;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .product-image {
+        background: linear-gradient(135deg, #B4A284 0%, #A2A595 100%);
+        border-radius: 20px;
+        /* height: 400px; */
+        width: 90vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* color: white; */
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}
+
+.overview-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1D1D1B;
+    margin-bottom: 1.5rem;
+}
+
+.overview-content p {
+    font-size: 1.1rem;
+    color: #1D1D1B;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+/* Technical Specs */
+.tech-specs {
+    padding: 4rem 0;
+    background: #A2A595;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #1D1D1B;
+}
+
+.section-title_alt {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #B4A284;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.spec-card {
+    background: #1D1D1B;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #B4A284;
+}
+
+.spec-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #B4A284;
+    margin-bottom: 1rem;
+}
+
+.spec-list {
+    list-style: none;
+}
+
+.spec-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.spec-list li:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.spec-value {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* Pricing */
+.pricing {
+    padding: 4rem 0;
+    background: #1a202c;
+    color: #B4A284;
+    text-align: center;
+}
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: scale(1.05);
+}
+
+.pricing-card.featured {
+    border-color: #B4A284;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.plan-price {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.plan-price span {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.plan-features {
+    list-style: none;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.plan-features li {
+    padding: 0.5rem 0;
+    opacity: 0.9;
+}
+
+.plan-features li::before {
+    content: '✓';
+    color: #B4A284;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.btn-pricing {
+    background: #B4A284;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.btn-pricing:hover {
+    color: #B4A284;
+    background: #1D1D1B;
+    transform: translateY(-2px);
+}
