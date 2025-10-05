@@ -65,6 +65,7 @@ body {
         font-weight: 700;
         color: #1D1D1B;
         text-decoration: none;
+        display: flex;
     }
 
     .nav-links {
